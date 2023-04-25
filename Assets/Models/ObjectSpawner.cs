@@ -10,21 +10,26 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Update method called");
         // Check if the user has pressed the A button
-        if(Input.GetButtonDown("A")) {
-            // Spawn object1Prefab
-            SpawnObject(object1Prefab);
+        if(Input.GetKeyDown(KeyCode.A)) {
+            if(Input.GetKeyDown(KeyCode.A)) {
+                Debug.Log("A key pressed");
+                // Spawn object1Prefab
+                SpawnObject(object1Prefab);
+            }
+
         }
     }
 
     void SpawnObject(GameObject prefab) 
     {
         // Instantiate the specified prefab at the spawn point
-        GameObject spawnedObject = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-
+        GameObject spawnedObject = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        Debug.Log("Spawning object: " + prefab.name);
         // Apply physics properties to the spawned object
         Rigidbody spawnedObjectRigidbody = spawnedObject.GetComponent<Rigidbody>();
-        spawnedObjectRigidbody.useGravity = true;
+        spawnedObjectRigidbody.useGravity = false;
         spawnedObjectRigidbody.isKinematic = false;
     }
 }
