@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 120328154}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -578,6 +578,9 @@ MonoBehaviour:
   controller: 2
   rayLength: 10
   lineRenderer: {fileID: 993626701}
+  floorTag: Floor
+  chair: {fileID: 7461179193091337426, guid: 8492e3463bb5efd4ca4462c2075e3d4b, type: 3}
+  desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
 --- !u!120 &993626703
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -692,6 +695,9 @@ MonoBehaviour:
   controller: 1
   rayLength: 10
   lineRenderer: {fileID: 993626703}
+  floorTag: Floor
+  chair: {fileID: 7461179193091337426, guid: 8492e3463bb5efd4ca4462c2075e3d4b, type: 3}
+  desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
 --- !u!4 &993626705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471613377008970, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
