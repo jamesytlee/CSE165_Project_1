@@ -9,33 +9,47 @@ public class RayCasting : MonoBehaviour
     // Variables for Ray Casting
     [SerializeField] protected float rayLength = 10f;
     [SerializeField] protected LineRenderer lineRenderer;
-    private RaycastHit hit;
+    protected RaycastHit hit;
 
-    // Tag for detecting the floor
-    [SerializeField] private string floorTag = "Floor";
+    // Variables for Tags
+    [SerializeField] protected string floorTag = "Floor";
+    [SerializeField] protected string interactableObjectTag = "InteractableObject";
 
     // Variables for Object Spawning
     [SerializeField] protected GameObject chair;
     [SerializeField] protected GameObject desk;
-    public Quaternion rotation = Quaternion.Euler(-90f, -180f, 90f);
-    public Vector3 yOffset = new Vector3(0, 0.152f, 0);
+    protected Quaternion rotation = Quaternion.Euler(-90f, -180f, 90f);
+    protected Vector3 yOffset = new Vector3(0, 0.25f, 0);
 
     // Variables for Teleportation
-    private bool isTeleporting;
+    protected bool isTeleporting;
 
-    // Update is called once per frame
+    // Variables for Object Interaction
+    protected InteractableObject interactableObject;
+    private bool isHoldingObject;
+    private GameObject interactionPoint;
+    [SerializeField] protected float rotationAngle = 45f;
+
+    private void State()
+    {
+        interactionPoint = new GameObject("Interaction Point");
+        interactionPoint.transform.SetParent(this.transform);
+    }
+
     void Update()
     {
         CastRayFromController();
         SpawnChair();
         SpawnDesk();
         TeleportOnFloor();
+        InteractWithObject();
+        RotateObject();
     }
 
     private void CastRayFromController()
     {
-        Vector3 rayOrigin = this.transform.position;
-        Vector3 rayDirection = this.transform.forward;
+        Vector3 rayOrigin = transform.position;
+        Vector3 rayDirection = transform.forward;
 
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, rayOrigin);
@@ -81,6 +95,7 @@ public class RayCasting : MonoBehaviour
 
     private void TeleportOnFloor()
     {
+        // Teleport by pressing Thumbstick
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick, controller) && !isTeleporting)
         {
             // Check if the ray hits the floor
@@ -104,5 +119,45 @@ public class RayCasting : MonoBehaviour
         playerController.transform.position = targetPosition;
 
         isTeleporting = false; 
+    }
+
+    private void RotateObject()
+    {
+        // Rotate the object when the secondary hand trigger is clicked
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger, controller))
+        {
+            if (hit.collider != null && hit.collider.CompareTag(interactableObjectTag))
+            {
+                interactableObject = hit.collider.GetComponent<InteractableObject>();
+                interactableObject.Rotate(rotationAngle);
+            }
+        }
+    }
+
+    private void InteractWithObject()
+    {
+        // Pick up object by holding down right trigger
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, controller) > 0.5f)
+        {
+            if (!isHoldingObject && hit.collider != null && hit.collider.CompareTag(interactableObjectTag))
+            {
+                interactableObject = hit.collider.GetComponent<InteractableObject>();
+                interactableObject.PickUp(interactionPoint.transform);
+                isHoldingObject = true;
+            }
+
+            if (isHoldingObject)
+            {
+                interactionPoint.transform.position = hit.point;
+            }
+        }
+        else
+        {
+            if (isHoldingObject)
+            {
+                interactableObject.Drop();
+                isHoldingObject = false;
+            }
+        }
     }
 }

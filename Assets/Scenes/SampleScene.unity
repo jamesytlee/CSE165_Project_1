@@ -491,6 +491,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: RotateAroundGuardianCenter
       value: 1
       objectReference: {fileID: 0}
@@ -553,7 +557,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.012497332
+        value: 0.0025943778
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -616,10 +620,10 @@ MonoBehaviour:
   rayLength: 10
   lineRenderer: {fileID: 993626701}
   floorTag: Floor
-  chair: {fileID: 7461179193091337426, guid: 8492e3463bb5efd4ca4462c2075e3d4b, type: 3}
+  interactableObjectTag: InteractableObject
+  chair: {fileID: 4028518763781996395, guid: 3cc67122597da9a44887a4ff4db4c8fe, type: 3}
   desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
-  rotation: {x: -0.49999994, y: -0.5, z: -0.5, w: 0.49999994}
-  yOffset: {x: 0, y: 0.152, z: 0}
+  rotationAngle: 45
 --- !u!120 &993626703
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -627,7 +631,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993626700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -726,7 +730,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993626700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72adfe04b7bca2f4cb9f9c30121451ec, type: 3}
   m_Name: 
@@ -735,10 +739,10 @@ MonoBehaviour:
   rayLength: 10
   lineRenderer: {fileID: 993626703}
   floorTag: Floor
-  chair: {fileID: 7461179193091337426, guid: 8492e3463bb5efd4ca4462c2075e3d4b, type: 3}
+  interactableObjectTag: InteractableObject
+  chair: {fileID: 4028518763781996395, guid: 3cc67122597da9a44887a4ff4db4c8fe, type: 3}
   desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
-  rotation: {x: -0.49999994, y: -0.5, z: -0.5, w: 0.49999994}
-  yOffset: {x: 0, y: 0.152, z: 0}
+  rotationAngle: 45
 --- !u!4 &993626705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471613377008970, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
