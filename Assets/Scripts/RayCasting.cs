@@ -20,12 +20,16 @@ public class RayCasting : MonoBehaviour
     public Quaternion rotation = Quaternion.Euler(-90f, -180f, 90f);
     public Vector3 yOffset = new Vector3(0, 0.152f, 0);
 
+    // Variables for Teleportation
+    private bool isTeleporting;
+
     // Update is called once per frame
     void Update()
     {
         CastRayFromController();
         SpawnChair();
         SpawnDesk();
+        TeleportOnFloor();
     }
 
     private void CastRayFromController()
@@ -48,19 +52,21 @@ public class RayCasting : MonoBehaviour
 
     private void SpawnChair()
     {
+        // Chair spawned by pressing "A"
         if (OVRInput.GetDown(OVRInput.Button.One, controller))
         {
             // Check if the ray hits the floor
             if (hit.collider != null && hit.collider.CompareTag(floorTag))
             {
                 // Spawn chair prefab at intersection point
-                Instantiate(chair, hit.point, rotation);
+                Instantiate(chair, hit.point + yOffset, rotation);
             }
         }
     }
 
     private void SpawnDesk()
     {
+        // Desk spawned by pressing "B"
         if (OVRInput.GetDown(OVRInput.Button.Two, controller))
         {
             // Check if the ray hits the floor
@@ -71,5 +77,32 @@ public class RayCasting : MonoBehaviour
                 Instantiate(desk, hit.point + yOffset, rotation);
             }
         }
+    }
+
+    private void TeleportOnFloor()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick, controller) && !isTeleporting)
+        {
+            // Check if the ray hits the floor
+            if (hit.collider != null && hit.collider.CompareTag(floorTag))
+            {
+                StartCoroutine(Teleport(hit.point));
+            }
+        }
+    }
+
+    IEnumerator Teleport(Vector3 targetPosition)
+    {
+        isTeleporting = true;
+
+        // Add a short delay before teleporting to make the teleportation more smooth
+        yield return new WaitForSeconds(0.1f);
+
+        // Find the OVRPlayerController and change its position
+        GameObject playerController = transform.root.gameObject;
+        targetPosition.y = playerController.transform.position.y; // prevents clipping
+        playerController.transform.position = targetPosition;
+
+        isTeleporting = false; 
     }
 }
