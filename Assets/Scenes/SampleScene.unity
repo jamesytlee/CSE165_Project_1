@@ -747,9 +747,11 @@ MonoBehaviour:
   controller: 1
   rayLength: 10
   lineRenderer: {fileID: 993626703}
-  floorTag: Floor
   interactableObjectTag: InteractableObject
   rotationAngle: 45
+  scaleFactor: 1.1
+  moveSpeed: 1
+  ballPrefab: {fileID: 1928590338091231679, guid: e3534c2fd115eec4288878ba43dca3ce, type: 3}
 --- !u!1 &1062030356
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,13 +12,16 @@ public class RayCasting_L : MonoBehaviour
     protected RaycastHit hit;
 
     // Variables for Tags
-    [SerializeField] protected string floorTag = "Floor";
     [SerializeField] protected string interactableObjectTag = "InteractableObject";
     
     // Variables for Object Interaction
     [SerializeField] protected float rotationAngle = 45f;
     [SerializeField] protected float scaleFactor = 1.1f;
     [SerializeField] protected float moveSpeed = 1f;
+
+    // Variable for Object Highlight
+    [SerializeField] protected GameObject ballPrefab;
+    protected GameObject instantiatedBall;
 
     void Update()
     {
@@ -39,10 +42,20 @@ public class RayCasting_L : MonoBehaviour
         if (Physics.Raycast(rayOrigin, rayDirection, out hit, rayLength))
         {
             lineRenderer.SetPosition(1, hit.point);
+
+            if (hit.collider.CompareTag(interactableObjectTag))
+            {
+                ShowBallAboveObject(true, hit.collider.transform);
+            }
+            else
+            {
+                ShowBallAboveObject(false);
+            }
         }
         else
         {
             lineRenderer.SetPosition(1, rayOrigin + rayDirection * rayLength);
+            ShowBallAboveObject(false);
         }
     }
 
@@ -83,6 +96,24 @@ public class RayCasting_L : MonoBehaviour
                 Vector3 direction = (transform.position - hit.collider.transform.position).normalized;
                 hit.collider.transform.position += direction * moveSpeed * Time.deltaTime;
             }
+        }
+    }
+
+    private void ShowBallAboveObject(bool show, Transform objectTransform = null)
+    {
+        if (show && objectTransform != null)
+        {
+            if (instantiatedBall == null)
+            {
+                Vector3 ballPosition = objectTransform.position + Vector3.up * 0.35f;
+                instantiatedBall = Instantiate(ballPrefab, ballPosition, Quaternion.identity);
+                instantiatedBall.transform.SetParent(objectTransform);
+            }
+        }
+        else if (!show && instantiatedBall != null)
+        {
+            Destroy(instantiatedBall);
+            instantiatedBall = null;
         }
     }
 }
