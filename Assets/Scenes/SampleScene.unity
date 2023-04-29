@@ -623,7 +623,6 @@ MonoBehaviour:
   interactableObjectTag: InteractableObject
   chair: {fileID: 4028518763781996395, guid: 3cc67122597da9a44887a4ff4db4c8fe, type: 3}
   desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
-  rotationAngle: 45
 --- !u!120 &993626703
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -631,7 +630,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993626700}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -676,7 +675,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.012497332
+        value: 0.0025943778
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -723,26 +722,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &993626704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993626700}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72adfe04b7bca2f4cb9f9c30121451ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: 1
-  rayLength: 10
-  lineRenderer: {fileID: 993626703}
-  floorTag: Floor
-  interactableObjectTag: InteractableObject
-  chair: {fileID: 4028518763781996395, guid: 3cc67122597da9a44887a4ff4db4c8fe, type: 3}
-  desk: {fileID: 521434119567118471, guid: 5ba472fb107b5384fb30a6c30e4f010d, type: 3}
-  rotationAngle: 45
 --- !u!4 &993626705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471613377008970, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
@@ -753,6 +732,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4188412984752900, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
   m_PrefabInstance: {fileID: 993626696}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &993626707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993626700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a040b85b46f44db5b1ca83870a6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  rayLength: 10
+  lineRenderer: {fileID: 993626703}
+  floorTag: Floor
+  interactableObjectTag: InteractableObject
+  rotationAngle: 45
 --- !u!1 &1062030356
 GameObject:
   m_ObjectHideFlags: 0

@@ -1427,7 +1427,6 @@ GameObject:
   - component: {fileID: 4369614051555730897}
   - component: {fileID: 384051930975048788}
   - component: {fileID: 4117665081326481391}
-  - component: {fileID: 1938070316614713107}
   m_Layer: 0
   m_Name: chair
   m_TagString: InteractableObject
@@ -1466,7 +1465,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &4117665081326481391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1480,18 +1479,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.030302, y: 6.3058577, z: 12.346565}
   m_Center: {x: -0.02818048, y: 0.48064113, z: -0.042573214}
---- !u!114 &1938070316614713107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4028518763781996395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a212a80d5baf04646abd5d85cf7fed5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4096673882621721983
 GameObject:
   m_ObjectHideFlags: 0
